@@ -1,17 +1,18 @@
 {
-    "compilerOptions": {
-      "outDir": "dist", // onde vai compilar arquivo js no servidor
-      "module": "commonjs", // config import/export js
-      "target": "es2019", // gera código padrão js 2019
-      "esModuleInterop": true,
-      "sourceMap": true,
-      "rootDirs": ["src", "tests"],
-      "baseUrl": "src",
-      "paths": {
-        "@/tests/*": ["../tests/*"],
-        "@/*": ["*"]
-      }
-    },
-    "include": ["src", "tests"],
-    "exclude": []
-  }
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es2019",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "rootDirs": ["src", "tests"],
+    "baseUrl": "src",
+    // "strictNullChecks": true,
+    "paths": {
+      "@/tests/*": ["../tests/*"],
+      "@/*": ["*"]
+    }
+  },
+  "include": ["src", "tests"],
+  "exclude": []
+}
