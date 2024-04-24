@@ -20,8 +20,8 @@ const makeAddAccount = (): AddAccount => {
     add (account: AddAccountModel): AccountModel {
       const fakeAccount = {
         id: 'valid_id',
-        name: 'valid_name',
-        email: 'valid_email@mainModule.com',
+        name: 'jean',
+        email: 'jeanmbiz@hotmail.com',
         password: '123456'
       }
       return fakeAccount
@@ -150,7 +150,7 @@ describe('SignUp Controller', () => {
     expect(isValidSpy).toHaveBeenCalledWith('jeanmbiz@hotmail.com')
   })
 
-  test('Should call AddAcount with correct values', () => {
+  test('Should call AddAccount with correct values', () => {
     const { sut, addAccountStub } = makeSut()
     const addSpy = jest.spyOn(addAccountStub, 'add')
     const httpRequest = {
@@ -186,5 +186,44 @@ describe('SignUp Controller', () => {
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 500 if AddAccount throws', () => {
+    const { sut, addAccountStub } = makeSut()
+    jest.spyOn(addAccountStub, 'add').mockImplementationOnce(() => {
+      throw new Error()
+    })
+
+    const httpRequest = {
+      body: {
+        name: 'jean',
+        email: 'jeanmbiz@hotmail.com',
+        password: '123456',
+        passwordConfirmation: '123456'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 20 if valid data is provider', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        name: 'jean',
+        email: 'jeanmbiz@hotmail.com',
+        password: '123456',
+        passwordConfirmation: '123456'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({
+      id: 'valid_id',
+      name: 'jean',
+      email: 'jeanmbiz@hotmail.com',
+      password: '123456'
+    })
   })
 })
