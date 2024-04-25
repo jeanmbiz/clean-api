@@ -2,7 +2,7 @@ import {
   InvalidParamError,
   MissingParamError,
   ServerError
-} from '../../errors'
+} from '../../errors/index'
 import { EmailValidator, AccountModel, AddAccountModel, AddAccount } from '../signup/signup-protocols'
 import { SignUpController } from './signup'
 
