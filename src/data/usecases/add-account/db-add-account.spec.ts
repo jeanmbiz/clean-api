@@ -103,7 +103,7 @@ describe('DbAddAccount Usecase', () => {
     await expect(promise).rejects.toThrow()
   })
 
-  test('Should return an account on sucess', async () => {
+  test('Should return an account on success', async () => {
     const { sut } = makeSut()
     const accountData = {
       name: 'valid_name',
