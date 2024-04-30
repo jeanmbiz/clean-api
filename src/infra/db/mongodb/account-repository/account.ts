@@ -9,11 +9,6 @@ export class AccountMongoRepository implements AddAccountRepository {
     const result = await accountCollection.insertOne(accountData)
     const account = await accountCollection.findOne({ _id: result.insertedId })
 
-    if (!account) {
-      throw new Error('Account not found after insertion.')
-    }
-
-    const { _id, name, email, password } = account
-    return { id: _id.toString(), name, email, password }
+    return MongoHelper.map(account)
   }
 }
