@@ -1,7 +1,7 @@
 import { MongoHelper } from '../helpers/mongo-helper'
 import { AccountMongoRepository } from './account'
 
-describe('Account Mongo Repository', () => {
+describe('Account Mongo Repository ', () => {
   beforeAll(async () => {
     if (!process.env.MONGO_URL) {
       throw new Error('MongoDB URL is not defined in environment variables.')
