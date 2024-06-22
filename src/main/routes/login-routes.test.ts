@@ -19,15 +19,17 @@ describe('SignUp Routes', () => {
     await accountCollection.deleteMany({})
   })
 
-  test('Should return an account on success', async () => {
-    await request(app)
-      .post('/api/signup')
-      .send({
-        name: 'Jean',
-        email: 'jeanmbiz@hotmail.com',
-        password: '123456',
-        passwordConfirmation: '123456'
-      })
-      .expect(200)
+  describe('POST /signUp', () => {
+    test('Should return 200 on signUp', async () => {
+      await request(app)
+        .post('/api/signup')
+        .send({
+          name: 'Jean',
+          email: 'jeanmbiz@hotmail.com',
+          password: '123456',
+          passwordConfirmation: '123456'
+        })
+        .expect(200)
+    })
   })
 })
